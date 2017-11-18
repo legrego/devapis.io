@@ -1,5 +1,5 @@
 import * as React from "react";
-import {chunk} from 'lodash';
+import {chunk} from "lodash";
 import Link from "gatsby-link";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 import { menuItems } from "../layouts";
@@ -12,7 +12,7 @@ import Column from "../components/Layout/Column";
 interface IndexPageProps {
   data: {
     apis: ApisJsonConnection
-  },
+  };
   location: {
     pathname: string;
   };
@@ -41,15 +41,15 @@ export default (props: IndexPageProps) =>
               apiRow.map((api, idx) => {
                 return (
                   <Column key={idx}>
-                    <ApiBox 
-                      apiName={api.node.name} 
+                    <ApiBox
+                      apiName={api.node.name}
                       apiDisplayName={api.node.displayName}
                       apiLogoUrl={api.node.logoUrl}
                       apiVersion={api.node.currentVersion}
                       comingSoon={!api.node.available}
                       apiTagline={api.node.tagline} />
                   </Column>
-                );                
+                );
               })
             }
           </Columns>
@@ -104,7 +104,6 @@ export default (props: IndexPageProps) =>
 
   </Container>;
 
-
 export const pageQuery = graphql`
 query PageIndex {
   apis: allApisJson {
@@ -120,4 +119,4 @@ query PageIndex {
     }
   }
 }
-`
+`;

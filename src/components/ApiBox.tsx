@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Box from './Layout/Box';
+import * as React from "react";
+import Box from "./Layout/Box";
 
 export interface ApiBoxProps {
     apiName: string;
@@ -47,7 +47,7 @@ export default class ApiBox extends React.Component<ApiBoxProps, any> {
         } else {
             contents = (
                 <button>View Docs</button>
-            )
+            );
         }
 
         return (

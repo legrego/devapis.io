@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export interface ContainerProps {
     isFluid?: boolean;
@@ -7,7 +7,7 @@ export interface ContainerProps {
 
 export default class Container extends React.PureComponent<ContainerProps, any> {
     static defaultProps = {
-        className: ''
+        className: ""
     };
     public render() {
         return (
@@ -16,4 +16,4 @@ export default class Container extends React.PureComponent<ContainerProps, any> 
             </div>
         );
     }
-};
+}

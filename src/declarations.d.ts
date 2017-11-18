@@ -6,4 +6,4 @@ declare module "*/package.json" {
 
 declare const graphql: (query: TemplateStringsArray) => void;
 
-declare module 'swagger-ui';
+declare module "swagger-ui";

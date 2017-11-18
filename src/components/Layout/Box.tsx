@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export interface BoxProps {
     className: string;
@@ -7,9 +7,9 @@ export interface BoxProps {
 export default class Box extends React.PureComponent<BoxProps, any> {
     public render() {
         return (
-            <div className={`box ${this.props.className || ''}`}>
+            <div className={`box ${this.props.className || ""}`}>
                 {this.props.children}
             </div>
         );
     }
-};
+}

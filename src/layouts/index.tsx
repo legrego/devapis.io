@@ -11,14 +11,14 @@ import "font-awesome/css/font-awesome.min.css";
 export const menuItems = [
   { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
   { name: "Documentation",
-    path: "/api-docs", 
-    exact: true, 
+    path: "/api-docs",
+    exact: true,
     icon: "info circle",
     items: [{
-      name: 'Holiday API',
-      path: '/api-docs/holiday',
+      name: "Holiday API",
+      path: "/api-docs/holiday",
       exact: true,
-      icon: ''
+      icon: ""
     }]
   },
   { name: "About", path: "/about/", exact: true, icon: "info circle" },

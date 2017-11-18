@@ -15,7 +15,8 @@
         "no-console": [
             false
         ],
-        "no-var-requires": false
+        "no-var-requires": false,
+        "trailing-comma": false
     },
     "rulesDirectory": []
 }

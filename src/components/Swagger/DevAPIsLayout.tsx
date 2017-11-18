@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Container from '../Layout/Container';
+import * as React from "react";
+import Container from "../Layout/Container";
 
 export interface ILayoutProps {
     getComponent: (componentName: string, isContainerComponent?: boolean) => React.ComponentClass<any>;
@@ -10,20 +10,20 @@ export default class CustomLayout extends React.Component<ILayoutProps, any> {
     public render() {
         const{getComponent, specSelectors} = this.props;
 
-        const Operations = getComponent("operations", true)
+        const Operations = getComponent("operations", true);
 
-        const loadingStatus = specSelectors.loadingStatus()
+        const loadingStatus = specSelectors.loadingStatus();
 
         return (
             <Container className="swagger-ui">
                 {this.maybeShowLoadingStatus(loadingStatus)}
                 {this.maybeShowDocumentation(loadingStatus)}
             </Container>
-        )
+        );
     }
 
     private maybeShowLoadingStatus(loadingStatus: string) {
-        switch(loadingStatus) {
+        switch (loadingStatus) {
             case "loading":
                 return (
                     <div className="info">
@@ -38,7 +38,9 @@ export default class CustomLayout extends React.Component<ILayoutProps, any> {
                 );
             case "failedConfig":
                 return (
-                    <div className="info" style={{ maxWidth: "880px", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+                    <div
+                        className="info"
+                        style={{ maxWidth: "880px", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
                         <h4 className="title">Failed to load config.</h4>
                     </div>
                 );

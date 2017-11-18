@@ -15,7 +15,7 @@ export const HeaderMenu = ({ items, pathname, Link, inverted, dispatch }: Header
   <Container className="header-menu" isFluid={true}>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-          {items.map((item, idx) => 
+          {items.map((item, idx) =>
             <HeaderMenuItem key={idx} {...item} />
           )}
       </div>

@@ -36,7 +36,6 @@ export default (props: BlogPostProps) => {
       );
     });
 
-  const recentCover = frontmatter.image.children[0] as ImageSharp;
   return (
     <Container>
       <BlogTitle />

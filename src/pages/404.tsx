@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export default () =>
-  <section 
+  <section
     style={{
       minHeight: "700px",
       }}

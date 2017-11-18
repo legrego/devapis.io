@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export interface ColumnProps {
     isNarrow?: boolean;
@@ -13,9 +13,9 @@ export default class Column extends React.PureComponent<ColumnProps, any> {
         }
 
         return (
-            <div className={classList.join(',')}>
+            <div className={classList.join(",")}>
                 {this.props.children}
             </div>
         );
     }
-};
+}

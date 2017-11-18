@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 import Link from "gatsby-link";
-import { MenuItem } from '../Menu';
+import { MenuItem } from "../Menu";
 
 export default class HeaderMenuItem extends React.Component<MenuItem, any> {
     public render() {
