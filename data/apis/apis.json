@@ -1,0 +1,29 @@
+[{
+    "name": "holiday",
+    "displayName": "Holiday API",
+    "logoUrl": "http://placehold.it/150x150?text=Holiday", 
+    "tagline": "The best way to work with national holidays!",
+    "currentVersion": "0.1.0",
+    "available": true
+}, {
+    "name": "demo-data",
+    "displayName": "DemoData API",
+    "logoUrl": "http://placehold.it/150x150?text=DemoData", 
+    "tagline": "The best way to bootstrap your project!",
+    "currentVersion": "0.0.0",
+    "available": false
+}, {
+    "name": "controlled-chaos",
+    "displayName": "ControlledCHAOS",
+    "logoUrl": "http://placehold.it/150x150?text=ControlledCHAOS", 
+    "tagline": "The exceptional way to test exceptional conditions!",
+    "currentVersion": "0.0.0",
+    "available": false
+}, {
+    "name": "http-ping",
+    "displayName": "HTTPing",
+    "logoUrl": "http://placehold.it/150x150?text=HTTPing", 
+    "tagline": "Test external access to your endpoints!",
+    "currentVersion": "0.0.0",
+    "available": false
+}]
