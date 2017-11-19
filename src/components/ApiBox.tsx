@@ -1,5 +1,6 @@
 import * as React from "react";
 import Box from "./Layout/Box";
+import Link from "gatsby-link";
 
 export interface ApiBoxProps {
     apiName: string;
@@ -12,11 +13,17 @@ export interface ApiBoxProps {
 
 export default class ApiBox extends React.Component<ApiBoxProps, any> {
     public render() {
+        const apiLogo = <img src={this.props.apiLogoUrl} width="100" height="100" />;
+
         return (
             <Box className="api-box">
                 <article className="media">
                     <div className="media-left">
-                        <img src={this.props.apiLogoUrl} width="100" height="100" />
+                        {
+                            this.props.comingSoon
+                                ? apiLogo
+                                : this.linkToDocs(apiLogo)
+                        }
                     </div>
                     <div className="media-content">
                         <h4>
@@ -45,15 +52,19 @@ export default class ApiBox extends React.Component<ApiBoxProps, any> {
         if (this.props.comingSoon) {
             contents = <em>Coming Soon!</em>;
         } else {
-            contents = (
-                <button>View Docs</button>
-            );
+            contents = this.linkToDocs(<span>View Docs</span>);
         }
 
         return (
             <div className="api-box-actions">
                 {contents}
             </div>
+        );
+    }
+
+    private linkToDocs(element: React.ReactElement<any>) {
+        return (
+            <Link to={`/docs/${this.props.apiName}`} >{element}</Link>
         );
     }
 }

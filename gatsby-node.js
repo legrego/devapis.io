@@ -34,7 +34,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   const {createPage} = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const templates = ['blogPost', 'apiDocsPage', 'blogPage']
+    const templates = ['blogPost', 'apiDocsPage', 'tagsPage', 'blogPage']
       .reduce((mem, templateName) => {
         return Object.assign({}, mem,
         {[templateName]: path.resolve(`src/templates/${kebabCase(templateName)}.tsx`)});
@@ -94,7 +94,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
       .filter(api => api.available)
       .forEach(api => {
         createPage({
-          path: `/api-docs/${api.name}/`,
+          path: `/docs/${api.name}/`,
           component: slash(templates.apiDocsPage),
           context: {
             api
@@ -130,6 +130,9 @@ exports.createPages = ({graphql, boundActionCreators}) => {
       });
 
       resolve();
+    }).catch(e => {
+      console.error('Error during page generation', e);
+      throw e;
     });
   });
 };
