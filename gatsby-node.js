@@ -34,7 +34,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   const {createPage} = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const templates = ['blogPost', 'tagsPage', 'blogPage']
+    const templates = ['blogPost', 'apiDocsPage', 'blogPage']
       .reduce((mem, templateName) => {
         return Object.assign({}, mem,
         {[templateName]: path.resolve(`src/templates/${kebabCase(templateName)}.tsx`)});
@@ -52,6 +52,18 @@ exports.createPages = ({graphql, boundActionCreators}) => {
               frontmatter {
                 tags
               }
+            }
+          }
+        }
+        apis: allApisJson {
+          edges {
+            node {
+              name,
+              displayName,
+              logoUrl,
+              tagline,
+              currentVersion,
+              available
             }
           }
         }
@@ -75,6 +87,20 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             }
           });
         });
+
+      // Create api documentation pages
+      const apis = result.data.apis.edges.map(a => a.node);
+      apis
+      .filter(api => api.available)
+      .forEach(api => {
+        createPage({
+          path: `/api-docs/${api.name}/`,
+          component: slash(templates.apiDocsPage),
+          context: {
+            api
+          }
+        });
+      });
 
       // Create tags pages
       posts
