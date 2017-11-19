@@ -57,8 +57,8 @@ export default class ApiDocs extends React.PureComponent<IApiDocsProps, any> {
               <Hero isInfo={true}>
                   <Columns>
                       <Column>
-                          <p className="title">{api.displayName} Documentation</p>
-                          <p className="subtitle">{api.tagline}</p>
+                          <p className="title">{api && api.displayName} Documentation</p>
+                          <p className="subtitle">{api && api.tagline}</p>
                       </Column>
                       <Column isNarrow={true}>
                           <div>ad here</div>

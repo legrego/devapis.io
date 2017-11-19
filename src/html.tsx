@@ -1,5 +1,4 @@
-/* tslint:disable no-var-requires */
-/* tslint:disable no-console */
+/* tslint:disable all */
 
 import * as React from "react";
 import Helmet from "react-helmet";
@@ -34,6 +33,15 @@ module.exports = (props: HtmlProps) => {
   return (
     <html lang="en">
       <head>
+      {/* Global site tag (gtag.js) - Google Analytics */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91401057-2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91401057-2');
+      </script>
         {props.headComponents}
         <title>DevAPIs.io</title>
         <meta charSet="utf-8" />
