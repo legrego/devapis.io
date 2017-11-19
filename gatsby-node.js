@@ -89,19 +89,21 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         });
 
       // Create api documentation pages
-      const apis = result.data.apis.edges.map(a => a.node);
-      apis
-      .filter(api => api.available)
-      .forEach(api => {
-        createPage({
-          path: `/docs/${api.name}/`,
-          component: slash(templates.apiDocsPage),
-          context: {
-            api
-          }
+      if (result.data.apis) {
+        const apis = result.data.apis.edges.map(a => a.node);
+        apis
+        .filter(api => api.available)
+        .forEach(api => {
+          createPage({
+            path: `/docs/${api.name}/`,
+            component: slash(templates.apiDocsPage),
+            context: {
+              api
+            }
+          });
         });
-      });
-
+      }
+    
       // Create tags pages
       posts
         .reduce((mem, post) =>

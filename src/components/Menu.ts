@@ -5,6 +5,7 @@ export interface MenuItem {
   name: string;
   path: string;
   exact: boolean;
+  active: boolean;
   icon?: string;
   inverted?: boolean;
   items?: MenuItem[];

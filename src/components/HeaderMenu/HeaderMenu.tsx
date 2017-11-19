@@ -15,9 +15,12 @@ export const HeaderMenu = ({ items, pathname, Link, inverted, dispatch }: Header
   <Container className="header-menu" isFluid={true}>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-          {items.map((item, idx) =>
-            <HeaderMenuItem key={idx} {...item} />
-          )}
+          {items.map((item, idx) => {
+            const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
+            return (
+              <HeaderMenuItem key={idx} active={active} {...item} />
+            );
+          })}
       </div>
     </nav>
   </Container>;
