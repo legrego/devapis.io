@@ -51,17 +51,4 @@ describe("HeaderMenu component", () => {
     );
     expect(wrapper.find({ name: "Blog" }).prop("active")).toBeTruthy();
   });
-
-  it("should have inverted style", () => {
-    const wrapper = shallow(
-      <HeaderMenu
-        Link={LinkStub}
-        items={items}
-        pathname="/blog/toto"
-        dispatch={dispatchStub}
-        inverted
-      />,
-    );
-    expect(wrapper.find({ inverted: true }).length).toBe(1);
-  });
 });
