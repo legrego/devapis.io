@@ -6,6 +6,7 @@ import Hero from "../components/Layout/Hero";
 import "swagger-ui/dist/swagger-ui.css";
 
 import { ApisJson } from "../graphql-types";
+import { CustomInfoPlugin } from "../components/Swagger/Info/CustomInfoPlugin";
 
 export interface IApiDocsProps {
   pathContext: {
@@ -43,10 +44,9 @@ export default class ApiDocs extends React.PureComponent<IApiDocsProps, any> {
           url: `/apis/${apiName}/openapi-spec.yaml`,
           dom_id: "#swagger-ui",
           plugins: [
-              DevAPIsLayoutPlugin,
-              NoTryItOutPlugin
-          ],
-          layout: "CustomLayout"
+            CustomInfoPlugin,
+            NoTryItOutPlugin
+          ]
       });
     }
 

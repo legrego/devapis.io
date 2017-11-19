@@ -3,12 +3,19 @@ info:
   title: Holidays API
   description: An API for working with national holidays
   termsOfService: ''
+  host: ""
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
   contact:
     name: Larry Gregory
     url: 'https://devapis.io'
   version: '0.1.0'
+externalDocs:
+  url: https://github.com/legrego/holiday-rest-api
+  description: "View source on Github"
 paths:
-  "/":
+  "/holidays":
     get:
       description: Returns all holidays matching the specified criteria
       parameters:
@@ -35,7 +42,7 @@ paths:
       operationId: Get Today's Holiday
     summary: Determines if a holiday falls on the current day
     description: 'Determines if a holiday falls on the current day. If there is a holiday today, it is provided in the response'
-  '/today':
+  '/holidays/today':
     get:
       description: Determines if there is a holiday today
       parameters:
@@ -98,5 +105,6 @@ components:
           $ref: '#/components/schemas/holiday'
   links: {}
   callbacks: {}
-security: []
-servers: []
+servers:
+  - url: "https://holiday.devapis.io/v1"
+    description: "Public Holiday API Server"

@@ -10,8 +10,6 @@ export default class CustomLayout extends React.Component<ILayoutProps, any> {
     public render() {
         const{getComponent, specSelectors} = this.props;
 
-        const Operations = getComponent("operations", true);
-
         const loadingStatus = specSelectors.loadingStatus();
 
         return (
@@ -51,10 +49,11 @@ export default class CustomLayout extends React.Component<ILayoutProps, any> {
 
     private maybeShowDocumentation(loadingStatus: string) {
         if (!loadingStatus || loadingStatus === "success") {
+            const Info = this.props.getComponent("Servers");
             const Operations = this.props.getComponent("operations", true);
             return (
                 <div>
-                    <h2>Select an operation:</h2>
+                    <Info />
                     <Operations />
                 </div>
             );
