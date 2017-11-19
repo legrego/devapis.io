@@ -1,0 +1,110 @@
+openapi: '3.0.0'
+info:
+  title: Holidays API
+  description: An API for working with national holidays
+  termsOfService: ''
+  host: ""
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: Larry Gregory
+    url: 'https://devapis.io'
+  version: '0.1.0'
+externalDocs:
+  url: https://github.com/legrego/holiday-rest-api
+  description: "View source on Github"
+paths:
+  "/holidays":
+    get:
+      description: Returns all holidays matching the specified criteria
+      parameters:
+        - name: tz
+          in: query
+          schema:
+            type: string
+          description: 'The timezone (as defined here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).'
+        - name: state
+          in: query
+          schema:
+            type: string
+          description: the state to retrieve holidays for
+      responses:
+        200:
+          description: Holiday
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/holiday'
+      summary: Returns all holidays matching the specified criteria
+      operationId: Get Today's Holiday
+    summary: Determines if a holiday falls on the current day
+    description: 'Determines if a holiday falls on the current day. If there is a holiday today, it is provided in the response'
+  '/holidays/today':
+    get:
+      description: Determines if there is a holiday today
+      parameters:
+        - name: tz
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 'The timezone (as defined here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).'
+        - name: state
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/state_abbrev'
+          description: the state to retrieve holidays for
+      responses:
+        200:
+          description: Today's Holiday
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/holiday'
+      summary: Returns all holidays matching the specified criteria
+      operationId: Get Today's Holiday
+    summary: Determines if a holiday falls on the current day
+    description: 'Determines if a holiday falls on the current day. If there is a holiday today, it is provided in the response'
+components:
+  schemas:
+    state_abbrev:
+      type: string
+      minLength: 2
+      maxLength: 2
+    holiday:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Holiday
+        type:
+          type: string
+          description: the type of holiday
+        date:
+          type: string
+          description: the date this holiday takes place
+        start:
+          type: string
+          description: the date and time this holiday starts
+        end:
+          type: string
+          description: the date and time this holiday ends
+    isHoliday:
+      type: object
+      properties:
+        isHoliday:
+          type: boolean
+          description: 'True if today is a holiday, false otherwise'
+        holiday:
+          $ref: '#/components/schemas/holiday'
+  links: {}
+  callbacks: {}
+servers:
+  - url: "https://holiday.devapis.io/v1"
+    description: "Public Holiday API Server"

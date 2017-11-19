@@ -1,0 +1,2 @@
+webpackJsonp([90529736705224],{918:function(a,t){a.exports={pathContext:{api:{name:"holiday",displayName:"Holiday API",logoUrl:"http://placehold.it/150x150?text=Holiday",tagline:"The best way to work with national holidays!",currentVersion:"0.1.0",available:!0}}}}});
+//# sourceMappingURL=path---docs-holiday-ad6a8757a84ac7a0e187.js.map
