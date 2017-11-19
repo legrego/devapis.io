@@ -2,9 +2,7 @@ import Link from "gatsby-link";
 import * as React from "react";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 import Container from "../components/Layout/Container";
-import SidebarMenu from "../components/SidebarMenu/SidebarMenu";
-import "../css/styles.scss";
-import "../css/responsive.css";
+import "../scss/styles.scss";
 import "prismjs/themes/prism-okaidia.css";
 import "font-awesome/css/font-awesome.min.css";
 
