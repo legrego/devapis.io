@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 $bootstrap: #1f3540;
-$github: #333333;
+$github: #333;
 $twitter: #55acee;
 
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
@@ -14,22 +14,19 @@ $warn: #df9c12;
 
 $blue: $primary;
 $yellow: $warn;
-$purple: #3B1C99;
+$purple: #3b1c99;
 
 @import "../../node_modules/bulma/bulma";
 
-
 .swagger-ui {
-    // Hide "default" tag display - Swagger does not provide mechanism for this.
-    h4.opblock-tag.no-desc {
-        display: none;
-    }
+  // Hide "default" tag display - Swagger does not provide mechanism for this.
+  h4.opblock-tag.no-desc {
+    display: none;
+  }
 }
-
-
 
 // nav
 .header-menu {
-    border-bottom: 2px solid $info;
-    background-color: $warn;
+  border-bottom: 2px solid $info;
+  background-color: $warn;
 }
