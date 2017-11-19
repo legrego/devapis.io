@@ -50,4 +50,38 @@ describe('data integrity', () => {
       });
     });
   });
+
+  describe('apis', () => {
+    const apis = JSON.parse(fs.readFileSync('data/apis/apis.json').toString("utf-8"));
+
+    const validators = [
+      {key: 'name', validator: _.isString},
+      {key: 'displayName', validator: _.isString},
+      {key: 'logoUrl', validator: _.isString},
+      {key: 'tagline', validator: _.isString},
+      {key: 'currentVersion', validator: _.isString},
+      {key: 'available', validator: _.isBoolean}
+    ];
+
+    apis.forEach(api => {
+      describe(`API: ${api.name}`, () => {
+        validators.forEach(field => {
+          it(`should have correct format for ${field.key}`, () => {
+            expect(field.validator(api[field.key], api)).toBeTruthy();
+          });
+        });
+
+        if (api.available) {
+          const specPath = `static/apis/${api.name}/openapi-spec.yaml`;
+
+          it(`should have a spec file located at "${specPath}"`, () => {
+            const spec = fs.readFileSync(specPath);
+            expect(spec).toBeTruthy();
+            expect(spec.toString("utf-8")).toBeTruthy();
+          });          
+        }
+
+      });
+    })
+  });
 });
