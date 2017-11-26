@@ -18,7 +18,7 @@ All source code for our APIs are freely available on Github. Pull requests are h
 See the API Documentation for links to each repository.
 
 ### New APIs
-If you have an API that you'd like to "donate" to DevAPIs, drop us a line at [todo].
+If you have an API that you'd like to "donate" to DevAPIs, drop us a line at todo.
 
 
 ## Prior Art - standing on the shoulders of giants

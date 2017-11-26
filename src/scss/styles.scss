@@ -36,13 +36,14 @@ $purple: #3b1c99;
 
 .api-box {
   .api-box-action-divider {
-    margin: 2px 0 10px 0;
+    margin: 2px 0 10px;
   }
-  
+
   .api-box-actions {
     a {
       margin-right: 10px;
     }
+
     a:last-child {
       margin-right: 0;
     }
@@ -55,7 +56,6 @@ $purple: #3b1c99;
     }
   }
 }
-
 
 #home-hero {
   background-image: url("/logos/devapis-logo-sm.svg");
