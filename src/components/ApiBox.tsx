@@ -1,24 +1,35 @@
 import * as React from "react";
 import Box from "./Layout/Box";
 import Link from "gatsby-link";
+import Img from "gatsby-image";
+import { ImageSharpEdge } from "../graphql-types";
 
 export interface ApiBoxProps {
     apiName: string;
     apiDisplayName: string;
     apiVersion: string;
     apiTagline: string;
-    apiLogoUrl: string;
+    apiLogo: string | ImageSharpEdge;
+    githubUrl?: string;
     comingSoon?: boolean;
 }
 
 export default class ApiBox extends React.Component<ApiBoxProps, any> {
     public render() {
-        const apiLogo = <img src={this.props.apiLogoUrl} width="100" height="100" />;
+        let apiLogo;
+        if (typeof this.props.apiLogo === "string") {
+            apiLogo = <img src={this.props.apiLogo} width="100" height="100" />;
+        } else {
+            apiLogo = <img
+                src={this.props.apiLogo.node.resize.src}
+                width={this.props.apiLogo.node.resize.width}
+                height={this.props.apiLogo.node.resize.height} />;
+        }
 
         return (
             <Box className="api-box">
                 <article className="media">
-                    <div className="media-left">
+                    <div className="media-left" style={{width: "150px"}}>
                         {
                             this.props.comingSoon
                                 ? apiLogo
@@ -52,11 +63,17 @@ export default class ApiBox extends React.Component<ApiBoxProps, any> {
         if (this.props.comingSoon) {
             contents = <em>Coming Soon!</em>;
         } else {
-            contents = this.linkToDocs(<span>View Docs</span>);
+            contents = (
+                <span className="api-box-actions">
+                    {this.linkToDocs(<i className="fa fa-book fa-2x" title="View Docs" />)}
+                    {this.linkToGithub()}
+                </span>
+            );
         }
 
         return (
             <div className="api-box-actions">
+                <hr className="api-box-action-divider" />
                 {contents}
             </div>
         );
@@ -65,6 +82,21 @@ export default class ApiBox extends React.Component<ApiBoxProps, any> {
     private linkToDocs(element: React.ReactElement<any>) {
         return (
             <Link to={`/docs/${this.props.apiName}`} >{element}</Link>
+        );
+    }
+
+    private linkToGithub() {
+        if (!this.props.githubUrl) {
+            return null;
+        }
+
+        return (
+            <a
+                href={this.props.githubUrl}
+                target="_blank"
+                title="View Source on Github">
+                <i className="fa fa-github fa-2x" />
+            </a>
         );
     }
 }

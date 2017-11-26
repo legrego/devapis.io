@@ -72,6 +72,11 @@ describe('data integrity', () => {
         });
 
         if (api.available) {
+
+          it('should have a github url defined', () => {
+            expect(_.isString(api.githubUrl)).toBeTruthy();
+          });
+
           const specPath = `static/apis/${api.name}/openapi-spec.yaml`;
 
           it(`should have a spec file located at "${specPath}"`, () => {

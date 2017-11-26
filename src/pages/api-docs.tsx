@@ -45,7 +45,7 @@ export default class ApiDocs extends React.PureComponent<IApiDocsProps, any> {
           dom_id: "#swagger-ui",
           plugins: [
             CustomInfoPlugin,
-            NoTryItOutPlugin
+            // NoTryItOutPlugin
           ]
       });
     }

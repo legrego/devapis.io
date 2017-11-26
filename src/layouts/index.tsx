@@ -7,7 +7,7 @@ import "prismjs/themes/prism-okaidia.css";
 import "font-awesome/css/font-awesome.min.css";
 
 export const menuItems = [
-  { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
+  { name: "Home", path: "/", exact: true, icon: "info circle" },
   { name: "Documentation",
     path: "/docs",
     exact: true,
@@ -19,8 +19,7 @@ export const menuItems = [
       icon: ""
     }]
   },
-  { name: "About", path: "/about/", exact: true, icon: "info circle" },
-  { name: "Blog", path: "/blog/", exact: false, icon: "newspaper" },
+  { name: "About", path: "/about/", exact: true, icon: "info circle" }
 ];
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
@@ -62,7 +61,32 @@ export default class DefaultLayout extends React.Component<DefaultLayoutProps, v
     return (
       <section key="Footer">
         <Container>
-            <p>Powered  by Gatsby 1.0</p>
+            <hr />
+            <nav className="level">
+              <p className="level-item">
+                <a className="link is-info" href="/index.html">Home</a>
+              </p>
+              <p className="level-item">
+                <a className="link is-info" href="/about">About</a>
+              </p>
+
+              <p className="level-item is-hidden-mobile">
+                <img
+                  src="/images/devapis-logo-menu-sm.png"
+                  width="50px"
+                  height="50px"
+                  alt="DevAPIs Logo"
+                  title="DevAPIs.io - A collection of friendly and helpful APIs"
+                  />
+              </p>
+
+              <p className="level-item">
+                <a className="link is-info" href="/privacy">Privacy</a>
+              </p>
+              <p className="level-item">
+                <a className="link is-info" href="/terms">Terms</a>
+              </p>
+            </nav>
         </Container>
       </section>
     );

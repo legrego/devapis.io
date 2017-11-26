@@ -35,13 +35,15 @@ module.exports = (props: HtmlProps) => {
       <head>
       {/* Global site tag (gtag.js) - Google Analytics */}
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91401057-2"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
+      <script dangerouslySetInnerHTML={{__html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-        gtag('config', 'UA-91401057-2');
-      </script>
+      gtag('config', 'UA-91401057-2');
+      `}} />
         {props.headComponents}
         <title>DevAPIs.io</title>
         <meta charSet="utf-8" />

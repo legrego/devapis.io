@@ -1,13 +1,15 @@
 [{
     "name": "holiday",
     "displayName": "Holiday API",
-    "logoUrl": "http://placehold.it/150x150?text=Holiday", 
+    "githubUrl": "https://github.com/legrego/holiday-rest-api",
+    "logoUrl": "http://placehold.it/150x150?text=Holiday",
     "tagline": "The best way to work with national holidays!",
-    "currentVersion": "0.1.0",
+    "currentVersion": "1.0",
     "available": true
 }, {
     "name": "demo-data",
     "displayName": "DemoData API",
+    "githubUrl": "https://github.com/legrego",
     "logoUrl": "http://placehold.it/150x150?text=DemoData", 
     "tagline": "The best way to bootstrap your project!",
     "currentVersion": "0.0.0",
@@ -15,6 +17,7 @@
 }, {
     "name": "controlled-chaos",
     "displayName": "ControlledCHAOS",
+    "githubUrl": "https://github.com/legrego",
     "logoUrl": "http://placehold.it/150x150?text=ControlledCHAOS", 
     "tagline": "The exceptional way to test exceptional conditions!",
     "currentVersion": "0.0.0",
@@ -22,6 +25,7 @@
 }, {
     "name": "http-ping",
     "displayName": "HTTPing",
+    "githubUrl": "https://github.com/legrego",
     "logoUrl": "http://placehold.it/150x150?text=HTTPing", 
     "tagline": "Test external access to your endpoints!",
     "currentVersion": "0.0.0",

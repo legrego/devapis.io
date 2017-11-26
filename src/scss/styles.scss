@@ -29,4 +29,36 @@ $purple: #3b1c99;
 .header-menu {
   border-bottom: 2px solid $info;
   background-color: $warn;
+  // Sibling section with columns has negative margin-top, which breaks hoverable menu items
+  // force higher z-index to correct this behavior.
+  z-index: 2;
+}
+
+.api-box {
+  .api-box-action-divider {
+    margin: 2px 0 10px 0;
+  }
+  
+  .api-box-actions {
+    a {
+      margin-right: 10px;
+    }
+    a:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .media-content {
+    .tag {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+#home-hero {
+  background-image: url("/logos/devapis-logo-sm.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 }

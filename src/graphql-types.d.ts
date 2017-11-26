@@ -64,8 +64,18 @@ export interface SitePage extends Node {
 
 export interface context {
   slug?: string | null; 
+  api?: api | null; 
   tag?: string | null; 
   skip?: number | null; 
+}
+
+export interface api {
+  name?: string | null; 
+  displayName?: string | null; 
+  logoUrl?: string | null; 
+  tagline?: string | null; 
+  currentVersion?: string | null; 
+  available?: boolean | null; 
 }
 /* Node of type SitePlugin */
 export interface SitePlugin extends Node {
@@ -88,10 +98,6 @@ export interface pluginOptions_3 {
   path?: string | null; 
   maxWidth?: number | null; 
   backgroundColor?: string | null; 
-  wrapperStyle?: string | null; 
-  linkImagesToOriginal?: boolean | null; 
-  pathPrefix?: string | null; 
-  ignoreFileExtensions?: string[] | null; 
   short_name?: string | null; 
   start_url?: string | null; 
   background_color?: string | null; 
@@ -112,10 +118,6 @@ export interface plugins_2 {
 export interface pluginOptions_4 {
   maxWidth?: number | null; 
   backgroundColor?: string | null; 
-  wrapperStyle?: string | null; 
-  linkImagesToOriginal?: boolean | null; 
-  pathPrefix?: string | null; 
-  ignoreFileExtensions?: string[] | null; 
 }
 
 export interface packageJson_2 {
@@ -280,9 +282,9 @@ export interface File extends Node {
   parent?: Node | null; /* The parent of this node. */
   children?: Node[] | null; /* The children of this node. */
   childAuthorJson?: AuthorJson | null; /* The child of this node of type authorJson */
-  childImageSharp?: ImageSharp | null; /* The child of this node of type imageSharp */
-  childApisJson?: ApisJson | null; /* The child of this node of type apisJson */
   childMarkdownRemark?: MarkdownRemark | null; /* The child of this node of type markdownRemark */
+  childrenApisJson?: ApisJson[] | null; /* The children of this node of type apisJson */
+  childImageSharp?: ImageSharp | null; /* The child of this node of type imageSharp */
   internal?: internal_13 | null; 
   sourceInstanceName?: string | null; 
   absolutePath?: string | null; 
@@ -329,12 +331,87 @@ export interface internal_14 {
   type?: string | null; 
   owner?: string | null; 
 }
+/* Node of type MarkdownRemark */
+export interface MarkdownRemark extends Node {
+  id: string; /* The id of this node. */
+  parent?: Node | null; /* The parent of this node. */
+  children?: Node[] | null; /* The children of this node. */
+  internal?: internal_15 | null; 
+  frontmatter?: frontmatter_2 | null; 
+  fileAbsolutePath?: string | null; 
+  fields?: fields_2 | null; 
+  html?: string | null; 
+  excerpt?: string | null; 
+  headings?: MarkdownHeading[] | null; 
+  timeToRead?: number | null; 
+  tableOfContents?: string | null; 
+  wordCount?: wordCount | null; 
+}
+
+export interface internal_15 {
+  content?: string | null; 
+  contentDigest?: string | null; 
+  type?: string | null; 
+  owner?: string | null; 
+  fieldOwners?: fieldOwners_2 | null; 
+}
+
+export interface fieldOwners_2 {
+  slug?: string | null; 
+}
+
+export interface frontmatter_2 {
+  title?: string | null; 
+  createdDate?: string | null; 
+  updatedDate?: string | null; 
+  author?: AuthorJson | null; 
+  _PARENT?: string | null; 
+  parent?: string | null; 
+  tags?: string[] | null; 
+  image?: File | null; 
+  draft?: boolean | null; 
+}
+
+export interface fields_2 {
+  slug?: string | null; 
+}
+
+export interface MarkdownHeading {
+  value?: string | null; 
+  depth?: number | null; 
+}
+
+export interface wordCount {
+  paragraphs?: number | null; 
+  sentences?: number | null; 
+  words?: number | null; 
+}
+/* Node of type ApisJson */
+export interface ApisJson extends Node {
+  id: string; /* The id of this node. */
+  parent?: Node | null; /* The parent of this node. */
+  children?: Node[] | null; /* The children of this node. */
+  name?: string | null; 
+  displayName?: string | null; 
+  githubUrl?: string | null; 
+  logoUrl?: string | null; 
+  tagline?: string | null; 
+  currentVersion?: string | null; 
+  available?: boolean | null; 
+  internal?: internal_16 | null; 
+}
+
+export interface internal_16 {
+  contentDigest?: string | null; 
+  type?: string | null; 
+  owner?: string | null; 
+}
 /* Node of type ImageSharp */
 export interface ImageSharp extends Node {
   id: string; /* The id of this node. */
   parent?: Node | null; /* The parent of this node. */
   children?: Node[] | null; /* The children of this node. */
-  internal?: internal_15 | null; 
+  internal?: internal_17 | null; 
   original?: ImageSharpOriginal | null; 
   resolutions?: ImageSharpResolutions | null; 
   sizes?: ImageSharpSizes | null; 
@@ -343,7 +420,7 @@ export interface ImageSharp extends Node {
   resize?: ImageSharpResize | null; 
 }
 
-export interface internal_15 {
+export interface internal_17 {
   contentDigest?: string | null; 
   type?: string | null; 
   owner?: string | null; 
@@ -408,80 +485,6 @@ export interface ImageSharpResize {
   height?: number | null; 
   aspectRatio?: number | null; 
   originalName?: string | null; 
-}
-/* Node of type ApisJson */
-export interface ApisJson extends Node {
-  id: string; /* The id of this node. */
-  parent?: Node | null; /* The parent of this node. */
-  children?: Node[] | null; /* The children of this node. */
-  name?: string | null; 
-  displayName?: string | null; 
-  logoUrl?: string | null; 
-  tagline?: string | null; 
-  currentVersion?: string | null; 
-  available?: boolean | null; 
-  internal?: internal_16 | null; 
-}
-
-export interface internal_16 {
-  contentDigest?: string | null; 
-  type?: string | null; 
-  owner?: string | null; 
-}
-/* Node of type MarkdownRemark */
-export interface MarkdownRemark extends Node {
-  id: string; /* The id of this node. */
-  parent?: Node | null; /* The parent of this node. */
-  children?: Node[] | null; /* The children of this node. */
-  internal?: internal_17 | null; 
-  frontmatter?: frontmatter_2 | null; 
-  fileAbsolutePath?: string | null; 
-  fields?: fields_2 | null; 
-  html?: string | null; 
-  excerpt?: string | null; 
-  headings?: MarkdownHeading[] | null; 
-  timeToRead?: number | null; 
-  tableOfContents?: string | null; 
-  wordCount?: wordCount | null; 
-}
-
-export interface internal_17 {
-  content?: string | null; 
-  contentDigest?: string | null; 
-  type?: string | null; 
-  owner?: string | null; 
-  fieldOwners?: fieldOwners_2 | null; 
-}
-
-export interface fieldOwners_2 {
-  slug?: string | null; 
-}
-
-export interface frontmatter_2 {
-  title?: string | null; 
-  createdDate?: string | null; 
-  updatedDate?: string | null; 
-  author?: AuthorJson | null; 
-  tags?: string[] | null; 
-  image?: File | null; 
-  draft?: boolean | null; 
-  _PARENT?: string | null; 
-  parent?: string | null; 
-}
-
-export interface fields_2 {
-  slug?: string | null; 
-}
-
-export interface MarkdownHeading {
-  value?: string | null; 
-  depth?: number | null; 
-}
-
-export interface wordCount {
-  paragraphs?: number | null; 
-  sentences?: number | null; 
-  words?: number | null; 
 }
 
 export interface internal_13 {
@@ -709,6 +712,7 @@ export interface sitePageConnectionComponentChunkNameQueryString {
 
 export interface sitePageConnectionContextInputObject {
   slug?: sitePageConnectionContextSlugQueryString | null; 
+  api?: sitePageConnectionContextApiInputObject | null; 
   tag?: sitePageConnectionContextTagQueryString | null; 
   skip?: sitePageConnectionContextSkipQueryInteger | null; 
 }
@@ -718,6 +722,55 @@ export interface sitePageConnectionContextSlugQueryString {
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiInputObject {
+  name?: sitePageConnectionContextApiNameQueryString | null; 
+  displayName?: sitePageConnectionContextApiDisplayNameQueryString | null; 
+  logoUrl?: sitePageConnectionContextApiLogoUrlQueryString | null; 
+  tagline?: sitePageConnectionContextApiTaglineQueryString | null; 
+  currentVersion?: sitePageConnectionContextApiCurrentVersionQueryString | null; 
+  available?: sitePageConnectionContextApiAvailableQueryBoolean | null; 
+}
+
+export interface sitePageConnectionContextApiNameQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiDisplayNameQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiLogoUrlQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiTaglineQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiCurrentVersionQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageConnectionContextApiAvailableQueryBoolean {
+  eq?: boolean | null; 
+  ne?: boolean | null; 
 }
 
 export interface sitePageConnectionContextTagQueryString {
@@ -836,10 +889,6 @@ export interface sitePluginConnectionPluginOptionsInputObject_2 {
   path?: sitePluginConnectionPluginOptionsPathQueryString_2 | null; 
   maxWidth?: sitePluginConnectionPluginOptionsMaxWidthQueryInteger_2 | null; 
   backgroundColor?: sitePluginConnectionPluginOptionsBackgroundColorQueryString_3 | null; 
-  wrapperStyle?: sitePluginConnectionPluginOptionsWrapperStyleQueryString_2 | null; 
-  linkImagesToOriginal?: sitePluginConnectionPluginOptionsLinkImagesToOriginalQueryBoolean_2 | null; 
-  pathPrefix?: sitePluginConnectionPluginOptionsPathPrefixQueryString_2 | null; 
-  ignoreFileExtensions?: sitePluginConnectionPluginOptionsIgnoreFileExtensionsQueryList_2 | null; 
   short_name?: sitePluginConnectionPluginOptionsShortNameQueryString_2 | null; 
   start_url?: sitePluginConnectionPluginOptionsStartUrlQueryString_2 | null; 
   background_color?: sitePluginConnectionPluginOptionsBackgroundColorQueryString_4 | null; 
@@ -892,10 +941,6 @@ export interface sitePluginConnectionPluginOptionsPluginsVersionQueryString_2 {
 export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsInputObject_2 {
   maxWidth?: sitePluginConnectionPluginOptionsPluginsPluginOptionsMaxWidthQueryInteger_2 | null; 
   backgroundColor?: sitePluginConnectionPluginOptionsPluginsPluginOptionsBackgroundColorQueryString_2 | null; 
-  wrapperStyle?: sitePluginConnectionPluginOptionsPluginsPluginOptionsWrapperStyleQueryString_2 | null; 
-  linkImagesToOriginal?: sitePluginConnectionPluginOptionsPluginsPluginOptionsLinkImagesToOriginalQueryBoolean_2 | null; 
-  pathPrefix?: sitePluginConnectionPluginOptionsPluginsPluginOptionsPathPrefixQueryString_2 | null; 
-  ignoreFileExtensions?: sitePluginConnectionPluginOptionsPluginsPluginOptionsIgnoreFileExtensionsQueryList_2 | null; 
 }
 
 export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsMaxWidthQueryInteger_2 {
@@ -908,33 +953,6 @@ export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsBackground
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsWrapperStyleQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsLinkImagesToOriginalQueryBoolean_2 {
-  eq?: boolean | null; 
-  ne?: boolean | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsPathPrefixQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsPluginsPluginOptionsIgnoreFileExtensionsQueryList_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-  in?: string[] | null; 
 }
 
 export interface sitePluginConnectionPluginOptionsPluginsPluginFilepathQueryString_2 {
@@ -968,33 +986,6 @@ export interface sitePluginConnectionPluginOptionsBackgroundColorQueryString_3 {
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsWrapperStyleQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsLinkImagesToOriginalQueryBoolean_2 {
-  eq?: boolean | null; 
-  ne?: boolean | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsPathPrefixQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginConnectionPluginOptionsIgnoreFileExtensionsQueryList_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-  in?: string[] | null; 
 }
 
 export interface sitePluginConnectionPluginOptionsShortNameQueryString_2 {
@@ -2156,11 +2147,11 @@ export interface markdownRemarkConnectionFrontmatterInputObject_2 {
   createdDate?: markdownRemarkConnectionFrontmatterCreatedDateQueryString_2 | null; 
   updatedDate?: markdownRemarkConnectionFrontmatterUpdatedDateQueryString_2 | null; 
   author?: markdownRemarkConnectionFrontmatterAuthorQueryString_2 | null; 
+  _PARENT?: markdownRemarkConnectionFrontmatterParentQueryString_3 | null; 
+  parent?: markdownRemarkConnectionFrontmatterParentQueryString_4 | null; 
   tags?: markdownRemarkConnectionFrontmatterTagsQueryList_2 | null; 
   image?: markdownRemarkConnectionFrontmatterImageQueryString_2 | null; 
   draft?: markdownRemarkConnectionFrontmatterDraftQueryBoolean_2 | null; 
-  _PARENT?: markdownRemarkConnectionFrontmatterParentQueryString_3 | null; 
-  parent?: markdownRemarkConnectionFrontmatterParentQueryString_4 | null; 
 }
 
 export interface markdownRemarkConnectionFrontmatterTitleQueryString_2 {
@@ -2191,6 +2182,20 @@ export interface markdownRemarkConnectionFrontmatterAuthorQueryString_2 {
   glob?: string | null; 
 }
 
+export interface markdownRemarkConnectionFrontmatterParentQueryString_3 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface markdownRemarkConnectionFrontmatterParentQueryString_4 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
 export interface markdownRemarkConnectionFrontmatterTagsQueryList_2 {
   eq?: string | null; 
   ne?: string | null; 
@@ -2209,20 +2214,6 @@ export interface markdownRemarkConnectionFrontmatterImageQueryString_2 {
 export interface markdownRemarkConnectionFrontmatterDraftQueryBoolean_2 {
   eq?: boolean | null; 
   ne?: boolean | null; 
-}
-
-export interface markdownRemarkConnectionFrontmatterParentQueryString_3 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface markdownRemarkConnectionFrontmatterParentQueryString_4 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
 }
 
 export interface markdownRemarkConnectionFileAbsolutePathQueryString_2 {
@@ -2321,6 +2312,7 @@ export interface apisJsonConnectionSort {
 export interface filterApisJson {
   name?: apisJsonConnectionNameQueryString_2 | null; 
   displayName?: apisJsonConnectionDisplayNameQueryString_2 | null; 
+  githubUrl?: apisJsonConnectionGithubUrlQueryString_2 | null; 
   logoUrl?: apisJsonConnectionLogoUrlQueryString_2 | null; 
   tagline?: apisJsonConnectionTaglineQueryString_2 | null; 
   currentVersion?: apisJsonConnectionCurrentVersionQueryString_2 | null; 
@@ -2337,6 +2329,13 @@ export interface apisJsonConnectionNameQueryString_2 {
 }
 
 export interface apisJsonConnectionDisplayNameQueryString_2 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface apisJsonConnectionGithubUrlQueryString_2 {
   eq?: string | null; 
   ne?: string | null; 
   regex?: string | null; 
@@ -2523,6 +2522,7 @@ export interface sitePageComponentChunkNameQueryString {
 
 export interface sitePageContextInputObject {
   slug?: sitePageContextSlugQueryString | null; 
+  api?: sitePageContextApiInputObject | null; 
   tag?: sitePageContextTagQueryString | null; 
   skip?: sitePageContextSkipQueryInteger | null; 
 }
@@ -2532,6 +2532,55 @@ export interface sitePageContextSlugQueryString {
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
+}
+
+export interface sitePageContextApiInputObject {
+  name?: sitePageContextApiNameQueryString | null; 
+  displayName?: sitePageContextApiDisplayNameQueryString | null; 
+  logoUrl?: sitePageContextApiLogoUrlQueryString | null; 
+  tagline?: sitePageContextApiTaglineQueryString | null; 
+  currentVersion?: sitePageContextApiCurrentVersionQueryString | null; 
+  available?: sitePageContextApiAvailableQueryBoolean | null; 
+}
+
+export interface sitePageContextApiNameQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageContextApiDisplayNameQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageContextApiLogoUrlQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageContextApiTaglineQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageContextApiCurrentVersionQueryString {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface sitePageContextApiAvailableQueryBoolean {
+  eq?: boolean | null; 
+  ne?: boolean | null; 
 }
 
 export interface sitePageContextTagQueryString {
@@ -2633,10 +2682,6 @@ export interface sitePluginPluginOptionsInputObject_2 {
   path?: sitePluginPluginOptionsPathQueryString_2 | null; 
   maxWidth?: sitePluginPluginOptionsMaxWidthQueryInteger_2 | null; 
   backgroundColor?: sitePluginPluginOptionsBackgroundColorQueryString_3 | null; 
-  wrapperStyle?: sitePluginPluginOptionsWrapperStyleQueryString_2 | null; 
-  linkImagesToOriginal?: sitePluginPluginOptionsLinkImagesToOriginalQueryBoolean_2 | null; 
-  pathPrefix?: sitePluginPluginOptionsPathPrefixQueryString_2 | null; 
-  ignoreFileExtensions?: sitePluginPluginOptionsIgnoreFileExtensionsQueryList_2 | null; 
   short_name?: sitePluginPluginOptionsShortNameQueryString_2 | null; 
   start_url?: sitePluginPluginOptionsStartUrlQueryString_2 | null; 
   background_color?: sitePluginPluginOptionsBackgroundColorQueryString_4 | null; 
@@ -2689,10 +2734,6 @@ export interface sitePluginPluginOptionsPluginsVersionQueryString_2 {
 export interface sitePluginPluginOptionsPluginsPluginOptionsInputObject_2 {
   maxWidth?: sitePluginPluginOptionsPluginsPluginOptionsMaxWidthQueryInteger_2 | null; 
   backgroundColor?: sitePluginPluginOptionsPluginsPluginOptionsBackgroundColorQueryString_2 | null; 
-  wrapperStyle?: sitePluginPluginOptionsPluginsPluginOptionsWrapperStyleQueryString_2 | null; 
-  linkImagesToOriginal?: sitePluginPluginOptionsPluginsPluginOptionsLinkImagesToOriginalQueryBoolean_2 | null; 
-  pathPrefix?: sitePluginPluginOptionsPluginsPluginOptionsPathPrefixQueryString_2 | null; 
-  ignoreFileExtensions?: sitePluginPluginOptionsPluginsPluginOptionsIgnoreFileExtensionsQueryList_2 | null; 
 }
 
 export interface sitePluginPluginOptionsPluginsPluginOptionsMaxWidthQueryInteger_2 {
@@ -2705,33 +2746,6 @@ export interface sitePluginPluginOptionsPluginsPluginOptionsBackgroundColorQuery
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsPluginsPluginOptionsWrapperStyleQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsPluginsPluginOptionsLinkImagesToOriginalQueryBoolean_2 {
-  eq?: boolean | null; 
-  ne?: boolean | null; 
-}
-
-export interface sitePluginPluginOptionsPluginsPluginOptionsPathPrefixQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsPluginsPluginOptionsIgnoreFileExtensionsQueryList_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-  in?: string[] | null; 
 }
 
 export interface sitePluginPluginOptionsPluginsPluginFilepathQueryString_2 {
@@ -2765,33 +2779,6 @@ export interface sitePluginPluginOptionsBackgroundColorQueryString_3 {
   ne?: string | null; 
   regex?: string | null; 
   glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsWrapperStyleQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsLinkImagesToOriginalQueryBoolean_2 {
-  eq?: boolean | null; 
-  ne?: boolean | null; 
-}
-
-export interface sitePluginPluginOptionsPathPrefixQueryString_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface sitePluginPluginOptionsIgnoreFileExtensionsQueryList_2 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-  in?: string[] | null; 
 }
 
 export interface sitePluginPluginOptionsShortNameQueryString_2 {
@@ -3916,11 +3903,11 @@ export interface markdownRemarkFrontmatterInputObject_2 {
   createdDate?: markdownRemarkFrontmatterCreatedDateQueryString_2 | null; 
   updatedDate?: markdownRemarkFrontmatterUpdatedDateQueryString_2 | null; 
   author?: markdownRemarkFrontmatterAuthorQueryString_2 | null; 
+  _PARENT?: markdownRemarkFrontmatterParentQueryString_3 | null; 
+  parent?: markdownRemarkFrontmatterParentQueryString_4 | null; 
   tags?: markdownRemarkFrontmatterTagsQueryList_2 | null; 
   image?: markdownRemarkFrontmatterImageQueryString_2 | null; 
   draft?: markdownRemarkFrontmatterDraftQueryBoolean_2 | null; 
-  _PARENT?: markdownRemarkFrontmatterParentQueryString_3 | null; 
-  parent?: markdownRemarkFrontmatterParentQueryString_4 | null; 
 }
 
 export interface markdownRemarkFrontmatterTitleQueryString_2 {
@@ -3951,6 +3938,20 @@ export interface markdownRemarkFrontmatterAuthorQueryString_2 {
   glob?: string | null; 
 }
 
+export interface markdownRemarkFrontmatterParentQueryString_3 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface markdownRemarkFrontmatterParentQueryString_4 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
 export interface markdownRemarkFrontmatterTagsQueryList_2 {
   eq?: string | null; 
   ne?: string | null; 
@@ -3969,20 +3970,6 @@ export interface markdownRemarkFrontmatterImageQueryString_2 {
 export interface markdownRemarkFrontmatterDraftQueryBoolean_2 {
   eq?: boolean | null; 
   ne?: boolean | null; 
-}
-
-export interface markdownRemarkFrontmatterParentQueryString_3 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
-}
-
-export interface markdownRemarkFrontmatterParentQueryString_4 {
-  eq?: string | null; 
-  ne?: string | null; 
-  regex?: string | null; 
-  glob?: string | null; 
 }
 
 export interface markdownRemarkFileAbsolutePathQueryString_2 {
@@ -4081,6 +4068,13 @@ export interface apisJsonNameQueryString_2 {
 }
 
 export interface apisJsonDisplayNameQueryString_2 {
+  eq?: string | null; 
+  ne?: string | null; 
+  regex?: string | null; 
+  glob?: string | null; 
+}
+
+export interface apisJsonGithubUrlQueryString_2 {
   eq?: string | null; 
   ne?: string | null; 
   regex?: string | null; 
@@ -4380,6 +4374,7 @@ export interface MarkdownRemarkRootQueryTypeArgs {
 export interface ApisJsonRootQueryTypeArgs {
   name?: apisJsonNameQueryString_2 | null; 
   displayName?: apisJsonDisplayNameQueryString_2 | null; 
+  githubUrl?: apisJsonGithubUrlQueryString_2 | null; 
   logoUrl?: apisJsonLogoUrlQueryString_2 | null; 
   tagline?: apisJsonTaglineQueryString_2 | null; 
   currentVersion?: apisJsonCurrentVersionQueryString_2 | null; 
@@ -4529,6 +4524,24 @@ export interface BirthtimeFileArgs {
   difference?: string | null; /* Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds. */
   locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
 }
+export interface ExcerptMarkdownRemarkArgs {
+  pruneLength?: number | null; 
+}
+export interface HeadingsMarkdownRemarkArgs {
+  depth?: HeadingLevels | null; 
+}
+export interface CreatedDateFrontmatter_2Args {
+  formatString?: string | null; 
+  fromNow?: boolean | null; /* Returns a string generated with Moment.js&#x27; fromNow function */
+  difference?: string | null; /* Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds. */
+  locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
+}
+export interface UpdatedDateFrontmatter_2Args {
+  formatString?: string | null; 
+  fromNow?: boolean | null; /* Returns a string generated with Moment.js&#x27; fromNow function */
+  difference?: string | null; /* Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds. */
+  locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
+}
 export interface ResolutionsImageSharpArgs {
   width?: number | null; 
   height?: number | null; 
@@ -4589,24 +4602,6 @@ export interface ResizeImageSharpArgs {
   cropFocus?: ImageCropFocus | null; 
   rotate?: number | null; 
 }
-export interface ExcerptMarkdownRemarkArgs {
-  pruneLength?: number | null; 
-}
-export interface HeadingsMarkdownRemarkArgs {
-  depth?: HeadingLevels | null; 
-}
-export interface CreatedDateFrontmatter_2Args {
-  formatString?: string | null; 
-  fromNow?: boolean | null; /* Returns a string generated with Moment.js&#x27; fromNow function */
-  difference?: string | null; /* Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds. */
-  locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
-}
-export interface UpdatedDateFrontmatter_2Args {
-  formatString?: string | null; 
-  fromNow?: boolean | null; /* Returns a string generated with Moment.js&#x27; fromNow function */
-  difference?: string | null; /* Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds. */
-  locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
-}
 export interface DistinctImageSharpConnectionArgs {
   field?: imageSharpDistinctEnum | null; 
 }
@@ -4652,28 +4647,28 @@ export interface BuildTimeSiteArgs {
   locale?: string | null; /* Configures the locale Moment.js will use to format the date. */
 }
 
-export type SitePageConnectionSortByFieldsEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "matchPath" | "component" | "componentChunkName" | "context___slug" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "children" | "internal___type" | "internal___contentDigest" | "internal___owner";
+export type SitePageConnectionSortByFieldsEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "matchPath" | "component" | "componentChunkName" | "context___slug" | "context___api___name" | "context___api___displayName" | "context___api___logoUrl" | "context___api___tagline" | "context___api___currentVersion" | "context___api___available" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "children" | "internal___type" | "internal___contentDigest" | "internal___owner";
 
 
 export type sitePageConnectionSortOrderValues = "ASC" | "DESC";
 
 
-export type sitePageDistinctEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "component" | "componentChunkName" | "context___slug" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "internal___type" | "internal___contentDigest" | "internal___owner";
+export type sitePageDistinctEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "component" | "componentChunkName" | "context___slug" | "context___api___name" | "context___api___displayName" | "context___api___logoUrl" | "context___api___tagline" | "context___api___currentVersion" | "context___api___available" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "internal___type" | "internal___contentDigest" | "internal___owner";
 
 
-export type sitePageGroupEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "component" | "componentChunkName" | "context___slug" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "internal___type" | "internal___contentDigest" | "internal___owner";
+export type sitePageGroupEnum = "layout" | "jsonName" | "internalComponentName" | "path" | "component" | "componentChunkName" | "context___slug" | "context___api___name" | "context___api___displayName" | "context___api___logoUrl" | "context___api___tagline" | "context___api___currentVersion" | "context___api___available" | "context___tag" | "context___skip" | "updatedAt" | "pluginCreator___NODE" | "pluginCreatorId" | "componentPath" | "id" | "parent" | "internal___type" | "internal___contentDigest" | "internal___owner";
 
 
-export type SitePluginConnectionSortByFieldsEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___wrapperStyle" | "pluginOptions___linkImagesToOriginal" | "pluginOptions___pathPrefix" | "pluginOptions___ignoreFileExtensions" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___postCssPlugins" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "packageJson___peerDependencies" | "packageJson___optionalDependecies" | "packageJson___bundledDependecies" | "parent" | "children" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type SitePluginConnectionSortByFieldsEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___postCssPlugins" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "packageJson___peerDependencies" | "packageJson___optionalDependecies" | "packageJson___bundledDependecies" | "parent" | "children" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
 export type sitePluginConnectionSortOrderValues = "ASC" | "DESC";
 
 
-export type sitePluginDistinctEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___wrapperStyle" | "pluginOptions___linkImagesToOriginal" | "pluginOptions___pathPrefix" | "pluginOptions___ignoreFileExtensions" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type sitePluginDistinctEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
-export type sitePluginGroupEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___wrapperStyle" | "pluginOptions___linkImagesToOriginal" | "pluginOptions___pathPrefix" | "pluginOptions___ignoreFileExtensions" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type sitePluginGroupEnum = "resolve" | "id" | "name" | "version" | "pluginOptions___plugins" | "pluginOptions___name" | "pluginOptions___path" | "pluginOptions___maxWidth" | "pluginOptions___backgroundColor" | "pluginOptions___short_name" | "pluginOptions___start_url" | "pluginOptions___background_color" | "pluginOptions___theme_color" | "pluginOptions___display" | "pluginOptions___precision" | "nodeAPIs" | "pluginFilepath" | "packageJson___name" | "packageJson___description" | "packageJson___version" | "packageJson___main" | "packageJson___keywords" | "packageJson___author" | "packageJson___license" | "packageJson___dependencies" | "packageJson___devDependencies" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
 export type DirectoryConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner" | "sourceInstanceName" | "absolutePath" | "relativePath" | "extension" | "size" | "prettySize" | "modifiedTime" | "accessTime" | "changeTime" | "birthTime" | "root" | "dir" | "base" | "ext" | "name" | "relativeDirectory" | "dev" | "mode" | "nlink" | "uid" | "gid" | "rdev" | "ino" | "atime" | "mtime" | "ctime" | "birthtime";
@@ -4694,6 +4689,9 @@ export type FileConnectionSortByFieldsEnum = "id" | "children" | "parent" | "int
 export type fileConnectionSortOrderValues = "ASC" | "DESC";
 
 
+export type HeadingLevels = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+
 export type PotraceTurnPolicy = "TURNPOLICY_BLACK" | "TURNPOLICY_WHITE" | "TURNPOLICY_LEFT" | "TURNPOLICY_RIGHT" | "TURNPOLICY_MINORITY" | "TURNPOLICY_MAJORITY";
 
 
@@ -4701,9 +4699,6 @@ export type ImageFormat = "NO_CHANGE" | "JPG" | "PNG" | "WEBP";
 
 
 export type ImageCropFocus = "CENTER" | "NORTH" | "NORTHEAST" | "EAST" | "SOUTHEAST" | "SOUTH" | "SOUTHWEST" | "WEST" | "NORTHWEST" | "ENTROPY" | "ATTENTION";
-
-
-export type HeadingLevels = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 
 export type fileDistinctEnum = "id" | "children" | "parent" | "internal___contentDigest" | "internal___mediaType" | "internal___type" | "internal___owner" | "sourceInstanceName" | "absolutePath" | "relativePath" | "extension" | "size" | "prettySize" | "modifiedTime" | "accessTime" | "changeTime" | "birthTime" | "root" | "dir" | "base" | "ext" | "name" | "relativeDirectory" | "dev" | "mode" | "nlink" | "uid" | "gid" | "rdev" | "ino" | "atime" | "mtime" | "ctime" | "birthtime";
@@ -4724,28 +4719,28 @@ export type imageSharpDistinctEnum = "id" | "parent" | "internal___contentDigest
 export type imageSharpGroupEnum = "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
-export type MarkdownRemarkConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "fileAbsolutePath" | "fields___slug" | "html" | "excerpt" | "headings" | "timeToRead" | "tableOfContents" | "wordCount___paragraphs" | "wordCount___sentences" | "wordCount___words";
+export type MarkdownRemarkConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "fileAbsolutePath" | "fields___slug" | "html" | "excerpt" | "headings" | "timeToRead" | "tableOfContents" | "wordCount___paragraphs" | "wordCount___sentences" | "wordCount___words";
 
 
 export type markdownRemarkConnectionSortOrderValues = "ASC" | "DESC";
 
 
-export type markdownRemarkDistinctEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "fileAbsolutePath" | "fields___slug";
+export type markdownRemarkDistinctEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "fileAbsolutePath" | "fields___slug";
 
 
-export type markdownRemarkGroupEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "fileAbsolutePath" | "fields___slug";
+export type markdownRemarkGroupEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "fileAbsolutePath" | "fields___slug";
 
 
-export type ApisJsonConnectionSortByFieldsEnum = "name" | "displayName" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type ApisJsonConnectionSortByFieldsEnum = "name" | "displayName" | "githubUrl" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
 export type apisJsonConnectionSortOrderValues = "ASC" | "DESC";
 
 
-export type apisJsonDistinctEnum = "name" | "displayName" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type apisJsonDistinctEnum = "name" | "displayName" | "githubUrl" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
-export type apisJsonGroupEnum = "name" | "displayName" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
+export type apisJsonGroupEnum = "name" | "displayName" | "githubUrl" | "logoUrl" | "tagline" | "currentVersion" | "available" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
 
 
 export type AuthorJsonConnectionSortByFieldsEnum = "id" | "bio" | "avatar" | "twitter" | "github" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
