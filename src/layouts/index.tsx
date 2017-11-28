@@ -64,7 +64,7 @@ export default class DefaultLayout extends React.Component<DefaultLayoutProps, v
             <hr />
             <nav className="level">
               <p className="level-item">
-                <a className="link is-info" href="/index.html">Home</a>
+                <a className="link is-info" href="/">Home</a>
               </p>
               <p className="level-item">
                 <a className="link is-info" href="/about">About</a>
@@ -79,9 +79,8 @@ export default class DefaultLayout extends React.Component<DefaultLayoutProps, v
                   title="DevAPIs.io - A collection of friendly and helpful APIs"
                   />
               </p>
-
               <p className="level-item">
-                <a className="link is-info" href="/privacy">Privacy</a>
+                <a className="link is-info" href="https://github.com/legrego">Github</a>
               </p>
               <p className="level-item">
                 <a className="link is-info" href="/terms">Terms</a>
