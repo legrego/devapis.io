@@ -60,7 +60,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             node {
               name,
               displayName,
-              logoUrl,
+              faIcon,
               tagline,
               currentVersion,
               available

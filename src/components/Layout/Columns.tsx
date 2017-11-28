@@ -3,24 +3,26 @@ import * as React from "react";
 export interface ColumnsProps {
     isVCentered?: boolean;
     isMobile?: boolean;
+    className?: string;
+    children?: any[];
 }
 
-export default class Columns extends React.PureComponent<ColumnsProps, any> {
-    public render() {
-        const classList: string[] = ["columns"];
+const Columns = (props: ColumnsProps) => {
+    const classList: string[] = ["columns"];
 
-        if (this.props.isVCentered) {
-            classList.push("is-vcentered");
-        }
-
-        if (this.props.isMobile) {
-            classList.push("is-mobile");
-        }
-
-        return (
-            <div className={classList.join(" ")}>
-                {this.props.children}
-            </div>
-        );
+    if (props.isVCentered) {
+        classList.push("is-vcentered");
     }
-}
+
+    if (props.isMobile) {
+        classList.push("is-mobile");
+    }
+
+    return (
+        <div className={`${classList.join(" ")} ${props.className || ""}`}>
+            {props.children}
+        </div>
+    );
+};
+
+export default Columns;

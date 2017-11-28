@@ -4,20 +4,22 @@ export interface HeroProps {
     id?: string;
     size?: "small" | "medium" | "large";
     isInfo?: boolean;
+    children?: any;
 }
-export default class Hero extends React.PureComponent<HeroProps, any> {
-    public render() {
-        const props: any = {};
-        if (this.props.id) {
-            props.id = this.props.id;
-        }
 
-        return (
-        <div {...props} className={`hero ${this.props.isInfo ? "is-info" : ""}`}>
-            <div className="hero-body">
-                {this.props.children}
-            </div>
-        </div>
-        );
+const Hero = (props: HeroProps) => {
+    const extraProps: any = {};
+    if (props.id) {
+        extraProps.id = props.id;
     }
-}
+
+    return (
+    <div {...extraProps} className={`hero ${props.isInfo ? "is-info" : ""}`}>
+        <div className="hero-body">
+            {props.children}
+        </div>
+    </div>
+    );
+};
+
+export default Hero;

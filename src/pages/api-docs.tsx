@@ -20,32 +20,12 @@ export default class ApiDocs extends React.PureComponent<IApiDocsProps, any> {
       const apiName = this.props.pathContext.api.name.toLowerCase();
 
       const SwaggerUi = require("swagger-ui");
-      const CustomLayout = require("../components/Swagger/DevAPIsLayout");
-
-      const DevAPIsLayoutPlugin = () => {
-          return {
-              components: {
-                  CustomLayout: CustomLayout.default
-              }
-          };
-      };
-
-      const NoTryItOutPlugin = () => {
-          return {
-              components: {
-                  TryItOutButton: (props: any): any => {
-                      return null;
-                  }
-              }
-          };
-      };
 
       const ui = SwaggerUi({
           url: `/apis/${apiName}/openapi-spec.yaml`,
           dom_id: "#swagger-ui",
           plugins: [
-            CustomInfoPlugin,
-            // NoTryItOutPlugin
+            CustomInfoPlugin
           ]
       });
     }

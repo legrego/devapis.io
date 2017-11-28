@@ -4,29 +4,24 @@ export interface ColumnProps {
     isNarrow?: boolean;
     isTwoThirds?: boolean;
     className?: string;
+    children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
 }
 
-export default class Column extends React.PureComponent<ColumnProps, any> {
-    static defaultProps = {
-        className: "",
-        isNarrow: false,
-        isTwoThirds: false
-    };
+const Column = (props: ColumnProps) => {
+    const classList = ["column"];
 
-    public render() {
-        const classList = ["column"];
-
-        if (this.props.isNarrow) {
-            classList.push("is-narrow");
-        }
-        if (this.props.isTwoThirds) {
-            classList.push("is-two-thirds");
-        }
-
-        return (
-            <div className={classList.join(" ") + ` ${this.props.className}`}>
-                {this.props.children}
-            </div>
-        );
+    if (props.isNarrow) {
+        classList.push("is-narrow");
     }
-}
+    if (props.isTwoThirds) {
+        classList.push("is-two-thirds");
+    }
+
+    return (
+        <div className={classList.join(" ") + ` ${props.className || ""}`}>
+            {props.children}
+        </div>
+    );
+};
+
+export default Column;

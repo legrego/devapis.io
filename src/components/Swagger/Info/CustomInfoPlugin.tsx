@@ -1,6 +1,4 @@
 import * as React from "react";
-import { fromJS } from "immutable";
-import { ILayoutProps } from "../DevAPIsLayout";
 
 interface IPathProps {
   host: string;
@@ -75,7 +73,6 @@ export const CustomInfoPlugin = (system: any) => {
         const {host, basePath, url} = info;
 
         const externalDocs = specSelectors.externalDocs();
-        console.log(externalDocs);
 
         const version = info.get("version");
         const description = info.get("description");

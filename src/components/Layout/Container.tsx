@@ -3,17 +3,15 @@ import * as React from "react";
 export interface ContainerProps {
     isFluid?: boolean;
     className?: string;
+    children?: any[];
 }
 
-export default class Container extends React.PureComponent<ContainerProps, any> {
-    static defaultProps = {
-        className: ""
-    };
-    public render() {
-        return (
-            <div className={`container ${this.props.className}`}>
-                {this.props.children}
-            </div>
-        );
-    }
-}
+const Container = (props: ContainerProps) => {
+    return (
+        <div className={`container ${props.className || ""}`}>
+            {props.children}
+        </div>
+    );
+};
+
+export default Container;

@@ -57,7 +57,8 @@ describe('data integrity', () => {
     const validators = [
       {key: 'name', validator: _.isString},
       {key: 'displayName', validator: _.isString},
-      {key: 'logoUrl', validator: _.isString},
+      {key: 'faIcon', validator: _.isString},
+      {key: 'githubUrl', validator: _.isString},
       {key: 'tagline', validator: _.isString},
       {key: 'currentVersion', validator: _.isString},
       {key: 'available', validator: _.isBoolean}
@@ -72,11 +73,6 @@ describe('data integrity', () => {
         });
 
         if (api.available) {
-
-          it('should have a github url defined', () => {
-            expect(_.isString(api.githubUrl)).toBeTruthy();
-          });
-
           const specPath = `static/apis/${api.name}/openapi-spec.yaml`;
 
           it(`should have a spec file located at "${specPath}"`, () => {

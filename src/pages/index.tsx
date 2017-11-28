@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 import Img from "gatsby-image";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 import { menuItems } from "../layouts";
-import ApiBox from "../components/ApiBox";
+import ApiBox from "../components/ApiBox/ApiBox";
 import Container from "../components/Layout/Container";
 import { ApisJsonConnection, ImageSharpConnection } from "../graphql-types";
 import Columns from "../components/Layout/Columns";
@@ -14,7 +14,6 @@ import Hero from "../components/Layout/Hero";
 interface IndexPageProps {
   data: {
     heroImage: ImageSharpConnection;
-    apiLogos: ImageSharpConnection;
     apis: ApisJsonConnection;
   };
   location: {
@@ -42,13 +41,12 @@ export default (props: IndexPageProps) =>
           <Columns key={rowIdx}>
             {
               apiRow.map((api, idx) => {
-                const logo = props.data.apiLogos.edges.find((e) => e.node.resize.src.indexOf(api.node.name) >= 0);
                 return (
                   <Column key={idx}>
                     <ApiBox
                       apiName={api.node.name}
                       apiDisplayName={api.node.displayName}
-                      apiLogo={logo || api.node.logoUrl}
+                      apiFAIcon={api.node.faIcon}
                       apiVersion={api.node.currentVersion}
                       githubUrl={api.node.githubUrl}
                       comingSoon={!api.node.available}
@@ -78,29 +76,12 @@ query PageIndex {
       }
     }
   }
-  apiLogos: allImageSharp(filter: {id: {regex: "/data/images/apis/"}}) {
-    edges {
-      node {
-        ... on ImageSharp {
-          resize(
-              width: 150,
-              quality: 100
-            ) {
-            src,
-            width,
-            height,
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
   apis: allApisJson {
     edges {
       node {
         name,
         displayName,
-        logoUrl,
+        faIcon,
         tagline,
         currentVersion,
         githubUrl,

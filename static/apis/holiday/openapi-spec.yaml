@@ -49,7 +49,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/isHoliday'
-      summary: Returns all holidays matching the specified criteria
+      summary: Determines if there is a holiday today
       operationId: Get Today's Holiday
     summary: Determines if a holiday falls on the current day
     description: 'Determines if a holiday falls on the current day. If there is a holiday today, it is provided in the response'
