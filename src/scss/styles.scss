@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+$bootstrap: #1f3540;
+$github: #333;
+$twitter: #55acee;
+
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+
+// http://paletton.com/#uid=63M0u0ktnrZixzgnwucuWmkBjhk
+
+$primary: #1b3e96;
+$info: #0c8187;
+$warn: #df9c12;
+
+$blue: $primary;
+$yellow: $warn;
+$purple: #3b1c99;
+
+@import "../../node_modules/bulma/bulma";
+
+.swagger-ui {
+  // Hide "default" tag display - Swagger does not provide mechanism for this.
+  h4.opblock-tag.no-desc {
+    display: none;
+  }
+}
+
+// nav
+.header-menu {
+  border-bottom: 2px solid $info;
+  background-color: $warn;
+  // Sibling section with columns has negative margin-top, which breaks hoverable menu items
+  // force higher z-index to correct this behavior.
+  z-index: 2;
+}
+
+.api-box {
+  .api-box-action-divider {
+    margin: 2px 0 10px;
+  }
+
+  .api-box-actions {
+    a {
+      margin-right: 20px;
+    }
+
+    a:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .media-content {
+    .tag {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+#home-hero {
+  background-image: url("/logos/devapis-logo-sm.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
