@@ -59,7 +59,7 @@
     "react-redux": "^5.0.6",
     "redux-devtools-extension": "^2.13.2",
     "slash": "1.0.0",
-    "swagger-ui": "^3.5.0",
+    "swagger-ui": "^3.6.0",
     "ts-loader": "^2.3.7",
     "tslint": "^5.8.0",
     "tween": "^0.9.0",
