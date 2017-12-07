@@ -59,7 +59,7 @@ export default class DefaultLayout extends React.Component<DefaultLayoutProps, v
 
   renderFooter() {
     return (
-      <section key="Footer">
+      <section key="Footer" className="site-footer">
         <Container>
             <hr />
             <nav className="level">
