@@ -18,13 +18,6 @@ $purple: #3b1c99;
 
 @import "../../node_modules/bulma/bulma";
 
-.swagger-ui {
-  // Hide "default" tag display - Swagger does not provide mechanism for this.
-  h4.opblock-tag.no-desc {
-    display: none;
-  }
-}
-
 // nav
 .header-menu {
   border-bottom: 2px solid $info;

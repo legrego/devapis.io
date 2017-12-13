@@ -17,6 +17,11 @@ export const menuItems = [
       path: "/docs/holiday",
       exact: true,
       icon: ""
+    }, {
+      name: "DemoData API",
+      path: "/docs/demodata",
+      exact: true,
+      icon: ""
     }]
   },
   { name: "About", path: "/about/", exact: true, icon: "info circle" }

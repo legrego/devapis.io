@@ -7,13 +7,13 @@
     "currentVersion": "1.0",
     "available": true
 }, {
-    "name": "demo-data",
+    "name": "demodata",
     "displayName": "DemoData API",
-    "githubUrl": "https://github.com/legrego",
+    "githubUrl": "https://github.com/legrego/demodata-rest-api",
     "faIcon": "fa-database",
     "tagline": "The best way to bootstrap your project!",
-    "currentVersion": "0.0.0",
-    "available": false
+    "currentVersion": "1.0",
+    "available": true
 }, {
     "name": "controlled-chaos",
     "displayName": "ControlledCHAOS",
