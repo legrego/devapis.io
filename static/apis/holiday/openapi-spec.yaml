@@ -21,7 +21,7 @@ paths:
         - $ref: '#/components/parameters/country'
         - $ref: '#/components/parameters/state'
       responses:
-        200:
+        success (200):
           description: Holiday
           content:
             application/json:
@@ -43,7 +43,7 @@ paths:
         - $ref: '#/components/parameters/country'
         - $ref: '#/components/parameters/state'
       responses:
-        200:
+        success (200):
           description: Today's Holiday
           content:
             application/json:

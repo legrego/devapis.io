@@ -1,5 +1,7 @@
 const path = require('path');
+const fs = require('fs');
 const slash = require('slash');
+const YAML = require("js-yaml");
 const {kebabCase, uniq, get, compact, times} = require('lodash');
 
 // Don't forget to update hard code values into:
@@ -91,14 +93,19 @@ exports.createPages = ({graphql, boundActionCreators}) => {
       // Create api documentation pages
       if (result.data.apis) {
         const apis = result.data.apis.edges.map(a => a.node);
+
         apis
         .filter(api => api.available)
         .forEach(api => {
+          const yamlSpec = fs.readFileSync(path.join(__dirname, "static", "apis", api.name, "openapi-spec.yaml")).toString("utf-8");
+          const jsonSpec = YAML.load(yamlSpec);
+
           createPage({
             path: `/docs/${api.name}/`,
             component: slash(templates.apiDocsPage),
             context: {
-              api
+              api,
+              spec: jsonSpec
             }
           });
         });
