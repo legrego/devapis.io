@@ -27,3 +27,4 @@ The DevAPIs suite would not be possible without existing open source initiatives
 | product | details |
 | ------- | ------- |
 | [date-holidays](https://github.com/commenthol/date-holidays) | npm package by [commenthol](https://github.com/commenthol), which powers the logic within our [Holidays API](/docs/holiday)
+| [faker](https://github.com/Marak/Faker.js) | npm package by [Marak](https://github.com/Marak), which powers the data generation within our [DemoData API](/docs/demodata)
