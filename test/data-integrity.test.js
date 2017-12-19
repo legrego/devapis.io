@@ -71,17 +71,6 @@ describe('data integrity', () => {
             expect(field.validator(api[field.key], api)).toBeTruthy();
           });
         });
-
-        if (api.available) {
-          const specPath = `static/apis/${api.name}/openapi-spec.yaml`;
-
-          it(`should have a spec file located at "${specPath}"`, () => {
-            const spec = fs.readFileSync(specPath);
-            expect(spec).toBeTruthy();
-            expect(spec.toString("utf-8")).toBeTruthy();
-          });          
-        }
-
       });
     })
   });

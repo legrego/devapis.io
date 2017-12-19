@@ -19,7 +19,7 @@ export default class ApiDocs extends React.PureComponent<IApiDocsProps, any> {
 
     public componentDidMount() {
       const ui = SwaggerUi({
-          spec: this.props.pathContext.spec,
+          url: this.props.pathContext.api.specUrl,
           dom_id: "#swagger-ui",
           plugins: [
             CustomInfoPlugin
