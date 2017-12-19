@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const slash = require('slash');
 const YAML = require("js-yaml");
+const axios = require("axios");
 const {kebabCase, uniq, get, compact, times} = require('lodash');
 
 // Don't forget to update hard code values into:
@@ -62,6 +63,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             node {
               name,
               displayName,
+              specUrl,
               faIcon,
               tagline,
               currentVersion,
@@ -90,22 +92,18 @@ exports.createPages = ({graphql, boundActionCreators}) => {
           });
         });
 
+      let apiPromise = Promise.resolve();
+
       // Create api documentation pages
       if (result.data.apis) {
         const apis = result.data.apis.edges.map(a => a.node);
 
-        apis
-        .filter(api => api.available)
-        .forEach(api => {
-          const yamlSpec = fs.readFileSync(path.join(__dirname, "static", "apis", api.name, "openapi-spec.yaml")).toString("utf-8");
-          const jsonSpec = YAML.load(yamlSpec);
-
+        apis.forEach(api => {
           createPage({
             path: `/docs/${api.name}/`,
             component: slash(templates.apiDocsPage),
             context: {
-              api,
-              spec: jsonSpec
+              api
             }
           });
         });
@@ -138,7 +136,14 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         });
       });
 
-      resolve();
+      apiPromise
+      .then(() => {
+        resolve();
+      })
+      .catch(e => {
+        throw e;
+      });
+
     }).catch(e => {
       console.error('Error during page generation', e);
       throw e;
