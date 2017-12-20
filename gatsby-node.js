@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const slash = require('slash');
 const YAML = require("js-yaml");
-const axios = require("axios");
 const {kebabCase, uniq, get, compact, times} = require('lodash');
 
 // Don't forget to update hard code values into:
