@@ -3,7 +3,7 @@ import * as React from "react";
 export interface ContainerProps {
     isFluid?: boolean;
     className?: string;
-    children?: any[];
+    children?: any | any[];
 }
 
 const Container = (props: ContainerProps) => {
