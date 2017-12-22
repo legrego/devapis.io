@@ -41,18 +41,26 @@ export class HeaderMenu extends React.PureComponent<HeaderMenuProps, HeaderMenuS
               <span />
             </button>
           </div>
-          <div className={`navbar-menu ${this.state.isBurgerActive ? "is-active" : ""}`}>
-            <div className="navbar-start">
-              {items.map((item, idx) => {
-                const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
-                return (
-                  <HeaderMenuItem key={idx} active={active} {...item} />
-                );
-              })}
-            </div>
-          </div>
+          {this.renderNavbarMenu()}
         </nav>
       </Container>
+    );
+  }
+
+  private renderNavbarMenu() {
+    const {items, pathname} = this.props;
+
+    return (
+      <div className={`navbar-menu ${this.state.isBurgerActive ? "is-active" : ""}`}>
+        <div className="navbar-start">
+          {items.map((item, idx) => {
+            const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
+            return (
+              <HeaderMenuItem key={idx} active={active} {...item} />
+            );
+          })}
+        </div>
+      </div>
     );
   }
 }
